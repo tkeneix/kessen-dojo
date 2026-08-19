@@ -1,0 +1,11 @@
+[persona]
+id = "summarizer-claude"
+engine = "claude:haiku"
+description = "入力ディレクトリ配下のファイルを読み、より構造化された詳細レポート (report.md + index.md) を出力するペルソナ。文字数を稼いで多角的に。"
+
+[knowledge]
+include = ["shared", "common", "private"]
+
+[engine_options]
+max_turns = 8
+permission_mode = "acceptEdits"

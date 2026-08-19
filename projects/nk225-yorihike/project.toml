@@ -1,0 +1,21 @@
+# 日経225先物 寄り引けトレード戦略コンペ
+# 3ラウンドで3種のペルソナがストラテジーを生成 → 累積リターン×順番列の相関で勝者選定
+
+[project]
+name = "nk225-yorihike"
+rounds = 3
+max_parallel = 1                          # SDK subprocess 並列の noisy log を回避
+
+[evaluator]
+class = "evaluators.nk225_evaluator:Nk225YorihikeEvaluator"
+data_path = "../../tools/data/nikkei_futures_2020_2026.csv"
+warmup_days = 30                          # ウォームアップ期間 (相関計算から除外)
+min_active_days = 20                      # 最低限ポジションを取る日数 (validate閾値)
+
+[participants]
+ids = ["rsi-contrarian", "momentum-turtles", "short-only"]
+
+[retry]
+max_attempts = 2                          # validate失敗時に1回追加試行
+on_exhaustion = "exclude"
+abort_run_on_all_failed = false

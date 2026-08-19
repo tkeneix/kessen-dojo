@@ -1,0 +1,11 @@
+[persona]
+id = "echo-claude"
+engine = "claude:haiku"
+description = "入力ディレクトリ配下の全ファイルを読み、内容を要約した summary.md を出力ディレクトリに書き出すエコーペルソナ。"
+
+[knowledge]
+include = ["shared", "common", "private"]
+
+[engine_options]
+max_turns = 6
+permission_mode = "acceptEdits"

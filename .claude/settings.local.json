@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:zenn.dev)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:docs.claude.com)",
+      "Bash(uv --version)",
+      "Bash(uv sync *)",
+      "Bash(uv pip *)",
+      "Bash(curl -s https://pypi.org/pypi/claude-agent-sdk/json)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('latest:', d['info']['version']\\); print\\('all:', sorted\\(d['releases'].keys\\(\\)\\)[-10:]\\)\")",
+      "Bash(uv run *)",
+      "Bash(uv add *)",
+      "Bash(env)",
+      "Bash(xargs ls *)",
+      "Bash(python *)",
+      "Bash(xargs -I {} sh -c 'echo \"=== {} ===\" && head -30 {}')",
+      "Bash(ps *)",
+      "WebFetch(domain:docs.x.ai)",
+      "WebSearch",
+      "Bash(grep -v \"allowed_tools\\\\|^.*Bash\\\\\",$\\\\|^.*Glob\\\\\",$\\\\|^.*Grep\\\\\",$\")",
+      "WebFetch(domain:developers.openai.com)",
+      "WebFetch(domain:platform.openai.com)"
+    ]
+  }
+}
