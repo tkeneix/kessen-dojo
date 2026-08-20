@@ -102,7 +102,7 @@ def persona_run(
     """指定ペルソナを単発実行 (P1)。
 
     例:
-      kessen persona-run --project projects/_sample --persona echo-claude \\
+      kessen persona-run --project projects/sample --persona echo-claude \\
         --in-dir /tmp/in --out-dir /tmp/out --dry-run
     """
     logger = setup_logger("kessen")
@@ -156,8 +156,8 @@ def run_once(
     """1案件のコンペを最終結果まで走らせる (P2)。
 
     例:
-      kessen run-once --project projects/_sample
-      kessen run-once --project projects/_sample --rounds 1
+      kessen run-once --project projects/sample
+      kessen run-once --project projects/sample --rounds 1
     """
     logger = setup_logger("kessen")
     project_dir = project_path.resolve()
@@ -253,7 +253,7 @@ def serve(host: str, port: int, db_path: Path | None, repo_root: Path | None, re
     例:
       kessen serve
       kessen serve --port 9000 --db /tmp/runs.db
-      curl -X POST http://localhost:8788/projects/_sample/rounds
+      curl -X POST http://localhost:8788/projects/sample/rounds
     """
     import os
 

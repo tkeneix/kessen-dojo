@@ -2,7 +2,7 @@
 
 決戦道場 — 複数ペルソナのAIエージェントが評価指標で競い合い、ラウンド勝ち抜き方式で最良案を選び取る常駐型基盤。Claude Agent SDK + uv ベース。
 
-詳細: 仕様 `docs/PRD.md` / 運用 `docs/OPS.md`
+詳細: 仕様 `docs/PRD.md` / 運用 `docs/OPS.md` / 案件追加 `docs/NEW_PROJECT.md`
 
 ## メンタルモデル
 
@@ -22,8 +22,6 @@
 
 ## 拡張ポイント
 
-新しい案件を追加する場合は `projects/{name}/` 配下を整備（PRD §3 参照）。基盤側 `src/kessen/` には案件特化コードを書かない。
+新しい案件を追加する場合は `projects/{name}/` 配下を整備（PRD §3 / `docs/NEW_PROJECT.md` 参照）。基盤側 `src/kessen/` には案件特化コードを書かない。
 
-## 進捗
-
-P0〜P5 完了。P6 (基盤コンテナ + DockerRunner) 以降は `docs/PRD.md §11` 参照。
+実装フェーズの到達点と未実装項目は `docs/PRD.md §11` を唯一の情報源とする（本ファイルには進捗を書かない）。
