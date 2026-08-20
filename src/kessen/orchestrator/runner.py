@@ -159,7 +159,6 @@ async def run_competition(
 
     rounds_summary: list[dict] = []
     aborted_at: int | None = None
-    cancelled = False
     # resumeで途中から始める場合、過去ラウンドのleaderboardもまずロード
     for r in range(1, from_round):
         existing = run_dir / f"round-{r}" / "leaderboard.json"
@@ -208,10 +207,11 @@ async def run_competition(
                 )
             except asyncio.CancelledError:
                 logger.warning("run_competition cancelled at round %d", r)
-                cancelled = True
                 # P1: cancel 時に partial round leaderboard が round.py 側で
                 # フラッシュされていれば rounds_summary に積み、final.json/summary.md
                 # を書き出してから raise する (数十分の作業を捨てない)。
+                # status="cancelled" の final.json は _flush_cancelled_run が書くため、
+                # この関数の通常終了パス (下の status 判定) には cancel は到達しない。
                 _flush_cancelled_run(
                     run_dir=run_dir,
                     project_name=project_cfg.project.name,
@@ -245,12 +245,7 @@ async def run_competition(
         # 次ラウンドの seed
         seed_dir = _build_next_seed(run_dir, r, leaderboard)
 
-    if cancelled:
-        status = "cancelled"
-    elif aborted_at:
-        status = "aborted"
-    else:
-        status = "completed"
+    status = "aborted" if aborted_at else "completed"
     winner_detail = _pick_overall_winner_detail(rounds_summary)
     if winner_detail is not None:
         overall_winner, overall_winner_round, overall_winner_score = winner_detail
